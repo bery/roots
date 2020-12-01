@@ -1,0 +1,5 @@
+name: "[HFO] - ServicesApi"
+apiVersion: "1.0"
+description: "Client wrapper for the HFO Services API."
+imports:
+  - "resources/tournaments.yml"

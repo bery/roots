@@ -1,0 +1,6 @@
+content_services_yaml:
+  title: "[ROOTS] - HFO api"
+  api_path: "src/api/content_services.yml"
+  config:
+    base_uri: "https://roots.hfo.pub"
+    debug: "/tmp/http.log"
