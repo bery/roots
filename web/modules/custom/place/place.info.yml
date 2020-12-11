@@ -1,0 +1,12 @@
+name: Place
+description: 'Provides Place content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - address
+  - field
+  - language
+  - menu_ui
+  - node
+  - path
+  - user

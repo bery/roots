@@ -10,6 +10,8 @@ services:
       MYSQL_DATABASE: $DB_NAME
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_PASSWORD
+    links:
+      - adminer
     volumes:
      - db-data:/var/lib/mysql # Use bind mount
 #      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
@@ -30,8 +32,8 @@ services:
 #      PHP_FPM_GROUP: wodby
 #      COLUMNS: 80 # Set 80 columns for docker exec -it.
 #      # Read instructions at https://wodby.com/docs/stacks/php/local/#xdebug
-#      PHP_XDEBUG: 1
-#      PHP_XDEBUG_DEFAULT_ENABLE: 1
+      PHP_XDEBUG: 1
+      PHP_XDEBUG_DEFAULT_ENABLE: 1
 #      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
 #      PHP_IDE_CONFIG: serverName=my-ide
 #      PHP_XDEBUG_IDEKEY: "my-ide"
@@ -51,14 +53,14 @@ services:
 ## For XHProf and Xdebug profiler traces
 #    - files:/mnt/files
 
-  crond:
-    image: wodby/drupal-php:$PHP_TAG
-    container_name: "${PROJECT_NAME}_crond"
-    environment:
-      CRONTAB: "0 * * * * drush -r /var/www/html/web cron"
-    command: sudo -E LD_PRELOAD=/usr/lib/preloadable_libiconv.so crond -f -d 0
-    volumes:
-    - ./:/var/www/html:cached
+  # crond:
+  #   image: wodby/drupal-php:$PHP_TAG
+  #   container_name: "${PROJECT_NAME}_crond"
+  #   environment:
+  #     CRONTAB: "0 * * * * drush -r /var/www/html/web cron"
+  #   command: sudo -E LD_PRELOAD=/usr/lib/preloadable_libiconv.so crond -f -d 0
+  #   volumes:
+  #   - ./:/var/www/html:cached
 
   nginx:
     image: wodby/nginx:$NGINX_TAG
@@ -132,20 +134,20 @@ services:
 #    - "traefik.http.services.${PROJECT_NAME}_varnish.loadbalancer.server.port=6081"
 #    - "traefik.http.routers.${PROJECT_NAME}_varnish.rule=Host(`varnish.${PROJECT_BASE_URL}`)"
 
-#  redis:
-#    container_name: "${PROJECT_NAME}_redis"
-#    image: wodby/redis:$REDIS_TAG
+  # redis:
+  #  container_name: "${PROJECT_NAME}_redis"
+  #  image: wodby/redis:$REDIS_TAG
 
-#  adminer:
-#    container_name: "${PROJECT_NAME}_adminer"
-#    image: wodby/adminer:$ADMINER_TAG
-#    environment:
-#      # For PostgreSQL:
-#      #      ADMINER_DEFAULT_DB_DRIVER: pgsql
-#      ADMINER_DEFAULT_DB_HOST: $DB_HOST
-#      ADMINER_DEFAULT_DB_NAME: $DB_NAME
-#    labels:
-#    - "traefik.http.routers.${PROJECT_NAME}_adminer.rule=Host(`adminer.${PROJECT_BASE_URL}`)"
+  adminer:
+   container_name: "${PROJECT_NAME}_adminer"
+   image: wodby/adminer:$ADMINER_TAG
+   environment:
+     # For PostgreSQL:
+     #      ADMINER_DEFAULT_DB_DRIVER: pgsql
+     ADMINER_DEFAULT_DB_HOST: $DB_HOST
+     ADMINER_DEFAULT_DB_NAME: $DB_NAME
+   labels:
+   - "traefik.http.routers.${PROJECT_NAME}_adminer.rule=Host(`adminer.${PROJECT_BASE_URL}`)"
 
 #  pma:
 #    image: phpmyadmin/phpmyadmin

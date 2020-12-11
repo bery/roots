@@ -1,0 +1,36 @@
+<?php
+
+function roots_http_client_cron() {
+
+  // We access our configuration.
+  $cron_config = \Drupal::config('cron_example.settings');
+
+  // Default to an hourly interval. Of course, cron has to be running at least
+  // hourly for this to work.
+  $interval = $cron_config
+    ->get('interval');
+  $interval = 1;
+
+  // We usually don't want to act every time cron runs (which could be every
+  // minute) so keep a time for the next run in the site state.
+  $next_execution = \Drupal::state()
+    ->get('roots_http_client.next_execution', 0);
+  if (REQUEST_TIME >= $next_execution) {
+    // This is a silly example of a cron job.
+    // It just makes it obvious that the job has run without
+    // making any changes to your database.
+    \Drupal::logger('roots_http_client')
+      ->notice('roots_http_client ran');
+    if (\Drupal::state()
+      ->get('roots_http_client_show_status_message')) {
+      \Drupal::messenger()
+        ->addMessage(t('roots_http_client executed at %time', [
+        '%time' => date('c'),
+      ]));
+      \Drupal::state()
+        ->set('roots_http_client_show_status_message', FALSE);
+    }
+    \Drupal::state()
+      ->set('roots_http_client.next_execution', REQUEST_TIME + $interval);
+  }
+}

@@ -1,0 +1,51 @@
+operations:
+  FindPlaces:
+    httpMethod: "GET"
+    uri: "places"
+    summary: "Find all the available posts."
+    responseClass: "PlacesList"
+    parameters:
+      pageCount:
+        location: "query"
+        description: "Filter events by id"
+        required: false
+        type: "string"
+
+  FindPlace:
+    httpMethod: "GET"
+    uri: "places/{id}"
+    summary: "Find a single post by id."
+    parameters:
+      id:
+        location: "uri"
+        description: "Filter posts by id"
+        required: true
+        type: "string"
+    responseModel: "Place"
+
+models:
+  Place:
+    type: "object"
+    location: "json"
+    properties:
+      id:
+        location: "json"
+        type: "string"
+      name:
+        location: "json"
+        type: "string"
+      city:
+        location: "json"
+        type: "string"
+      country:
+        location: "json"
+        type: "object"
+      street:
+        location: "json"
+        type: "string"
+
+  PlacesList:
+    type: "array"
+    location: "json"
+    items:
+      "$ref": "Place"

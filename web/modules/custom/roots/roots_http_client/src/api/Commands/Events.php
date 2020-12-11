@@ -10,14 +10,10 @@ namespace Drupal\roots_http_client\api\Commands;
  *
  * @package Drupal\roots_http_client\api\Commands
  */
-final class Posts {
+final class Events {
 
-  const CREATE_POST = 'CreatePost';
+  const FIND_EVENT = 'FindEvent';
 
-  const FIND_POSTS = 'FindTournaments';
-
-  const FIND_POST = 'FindPost';
-
-  const FIND_COMMENTS = 'FindComments';
+  const FIND_EVENTS = 'FindEvents';
 
 }

@@ -1,0 +1,48 @@
+operations:
+  FindEvents:
+    httpMethod: "GET"
+    uri: "events"
+    summary: "Find all the available events."
+    responseClass: "EventsList"
+    parameters:
+      pageCount:
+        location: "uri"
+        description: "Filter events by id"
+        required: true
+        type: "integer"
+
+  FindEvent:
+    httpMethod: "GET"
+    uri: "events/{postId}"
+    summary: "Find a single post by id."
+    parameters:
+      postId:
+        location: "uri"
+        description: "Filter events by id"
+        required: true
+        type: "integer"
+    responseModel: "Event"
+
+models:
+  Event:
+    type: "object"
+    location: "json"
+    properties:
+      id:
+        location: "json"
+        type: "string"
+      name:
+        location: "json"
+        type: "string"
+      city:
+        location: "json"
+        type: "string"
+      street:
+        location: "json"
+        type: "string"
+
+  EventsList:
+    type: "array"
+    location: "json"
+    items:
+      "$ref": "Event"
