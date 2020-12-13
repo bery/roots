@@ -1,0 +1,22 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rank
+    - node.type.ranking_player
+id: node.ranking_player.field_rank
+field_name: field_rank
+entity_type: node
+bundle: ranking_player
+label: Rank
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 5000
+  prefix: ''
+  suffix: ''
+field_type: integer

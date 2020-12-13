@@ -1,0 +1,10 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - node.type.ranking_player
+id: node.ranking_player
+target_entity_type_id: node
+target_bundle: ranking_player
+default_langcode: site_default
+language_alterable: false

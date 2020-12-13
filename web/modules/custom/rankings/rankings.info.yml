@@ -1,0 +1,13 @@
+name: Rankings
+description: 'Provides Rankings content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - field
+  - language
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+  - views

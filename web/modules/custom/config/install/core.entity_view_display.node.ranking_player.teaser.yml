@@ -1,0 +1,38 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.ranking_player.body
+    - field.field.node.ranking_player.field_player
+    - field.field.node.ranking_player.field_rank
+    - field.field.node.ranking_player.field_ranking
+    - field.field.node.ranking_player.field_ranking_points
+    - node.type.ranking_player
+  module:
+    - text
+    - user
+id: node.ranking_player.teaser
+targetEntityType: node
+bundle: ranking_player
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_player: true
+  field_rank: true
+  field_ranking: true
+  field_ranking_points: true
+  langcode: true

@@ -1,0 +1,10 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - node.type.player
+id: node.player
+target_entity_type_id: node
+target_bundle: player
+default_langcode: site_default
+language_alterable: false

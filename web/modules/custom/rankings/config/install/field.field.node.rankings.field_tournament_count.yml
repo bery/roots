@@ -1,0 +1,22 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tournament_count
+    - node.type.rankings
+id: node.rankings.field_tournament_count
+field_name: field_tournament_count
+entity_type: node
+bundle: rankings
+label: 'Tournament Count'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 1000
+  prefix: ''
+  suffix: ''
+field_type: integer

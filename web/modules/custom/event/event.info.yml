@@ -1,0 +1,15 @@
+name: Event
+description: 'Provides Event content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - datetime
+  - field
+  - language
+  - menu_ui
+  - node
+  - options
+  - path
+  - text
+  - user
+  - views

@@ -1,0 +1,22 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.ranking_player
+  module:
+    - text
+id: node.ranking_player.body
+field_name: body
+entity_type: node
+bundle: ranking_player
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

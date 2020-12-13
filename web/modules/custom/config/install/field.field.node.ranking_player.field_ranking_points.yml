@@ -1,0 +1,22 @@
+langcode: cs
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ranking_points
+    - node.type.ranking_player
+id: node.ranking_player.field_ranking_points
+field_name: field_ranking_points
+entity_type: node
+bundle: ranking_player
+label: 'Ranking Points'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 10000
+  prefix: ''
+  suffix: ''
+field_type: integer
