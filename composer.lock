@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4be51d805ba62730396b337b2aca255",
+    "content-hash": "a22b8e99eecc597d351a83490f697dd4",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3182,108 +3182,6 @@
             "time": "2020-08-07T22:30:30+00:00"
         },
         {
-            "name": "drupal/cron_example",
-            "version": "3.0.1",
-            "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/examples": "*"
-            },
-            "type": "metapackage",
-            "extra": {
-                "drupal": {
-                    "version": "3.0.1",
-                    "datestamp": "1605722150",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Reid",
-                    "homepage": "https://www.drupal.org/user/53892"
-                },
-                {
-                    "name": "Itangalo",
-                    "homepage": "https://www.drupal.org/user/153998"
-                },
-                {
-                    "name": "Mile23",
-                    "homepage": "https://www.drupal.org/user/116231"
-                },
-                {
-                    "name": "Torenware",
-                    "homepage": "https://www.drupal.org/user/18784"
-                },
-                {
-                    "name": "add1sun",
-                    "homepage": "https://www.drupal.org/user/65088"
-                },
-                {
-                    "name": "cyberswat",
-                    "homepage": "https://www.drupal.org/user/27802"
-                },
-                {
-                    "name": "ilo",
-                    "homepage": "https://www.drupal.org/user/118449"
-                },
-                {
-                    "name": "jhodgdon",
-                    "homepage": "https://www.drupal.org/user/155601"
-                },
-                {
-                    "name": "jn2",
-                    "homepage": "https://www.drupal.org/user/1001014"
-                },
-                {
-                    "name": "jungle",
-                    "homepage": "https://www.drupal.org/user/2919723"
-                },
-                {
-                    "name": "katbailey",
-                    "homepage": "https://www.drupal.org/user/172987"
-                },
-                {
-                    "name": "linclark",
-                    "homepage": "https://www.drupal.org/user/396253"
-                },
-                {
-                    "name": "marvil07",
-                    "homepage": "https://www.drupal.org/user/132175"
-                },
-                {
-                    "name": "mikl",
-                    "homepage": "https://www.drupal.org/user/58679"
-                },
-                {
-                    "name": "rfay",
-                    "homepage": "https://www.drupal.org/user/30906"
-                },
-                {
-                    "name": "socketwench",
-                    "homepage": "https://www.drupal.org/user/65793"
-                },
-                {
-                    "name": "valthebald",
-                    "homepage": "https://www.drupal.org/user/239562"
-                },
-                {
-                    "name": "yched",
-                    "homepage": "https://www.drupal.org/user/39567"
-                }
-            ],
-            "description": "Demonstrates hook_cron() and related features",
-            "homepage": "https://www.drupal.org/project/examples",
-            "support": {
-                "source": "https://git.drupalcode.org/project/examples"
-            }
-        },
-        {
             "name": "drupal/ctools",
             "version": "3.4.0",
             "source": {
@@ -3508,126 +3406,6 @@
                 "source": "https://gitlab.com/drupalspoons/devel",
                 "issues": "https://gitlab.com/drupalspoons/devel/-/issues",
                 "slack": "https://drupal.slack.com/archives/C012WAW1MH6"
-            }
-        },
-        {
-            "name": "drupal/examples",
-            "version": "3.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/examples.git",
-                "reference": "3.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/examples-3.0.1.zip",
-                "reference": "3.0.1",
-                "shasum": "b17fa7f2e65d70511973090f65efa8403bf71e3c"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9"
-            },
-            "require-dev": {
-                "drupal/stream_wrapper_example": "*"
-            },
-            "suggest": {
-                "drupal/devel": "Some modules will be able to pretty-print PHP with this module."
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "3.0.1",
-                    "datestamp": "1605722150",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Reid",
-                    "homepage": "https://www.drupal.org/user/53892"
-                },
-                {
-                    "name": "Itangalo",
-                    "homepage": "https://www.drupal.org/user/153998"
-                },
-                {
-                    "name": "Mile23",
-                    "homepage": "https://www.drupal.org/user/116231"
-                },
-                {
-                    "name": "Torenware",
-                    "homepage": "https://www.drupal.org/user/18784"
-                },
-                {
-                    "name": "add1sun",
-                    "homepage": "https://www.drupal.org/user/65088"
-                },
-                {
-                    "name": "cyberswat",
-                    "homepage": "https://www.drupal.org/user/27802"
-                },
-                {
-                    "name": "ilo",
-                    "homepage": "https://www.drupal.org/user/118449"
-                },
-                {
-                    "name": "jhodgdon",
-                    "homepage": "https://www.drupal.org/user/155601"
-                },
-                {
-                    "name": "jn2",
-                    "homepage": "https://www.drupal.org/user/1001014"
-                },
-                {
-                    "name": "jungle",
-                    "homepage": "https://www.drupal.org/user/2919723"
-                },
-                {
-                    "name": "katbailey",
-                    "homepage": "https://www.drupal.org/user/172987"
-                },
-                {
-                    "name": "linclark",
-                    "homepage": "https://www.drupal.org/user/396253"
-                },
-                {
-                    "name": "marvil07",
-                    "homepage": "https://www.drupal.org/user/132175"
-                },
-                {
-                    "name": "mikl",
-                    "homepage": "https://www.drupal.org/user/58679"
-                },
-                {
-                    "name": "rfay",
-                    "homepage": "https://www.drupal.org/user/30906"
-                },
-                {
-                    "name": "socketwench",
-                    "homepage": "https://www.drupal.org/user/65793"
-                },
-                {
-                    "name": "valthebald",
-                    "homepage": "https://www.drupal.org/user/239562"
-                },
-                {
-                    "name": "yched",
-                    "homepage": "https://www.drupal.org/user/39567"
-                }
-            ],
-            "description": "The Examples for Developers project aims to provide high-quality, well-documented API examples for a broad range of Drupal core functionality.",
-            "homepage": "https://www.drupal.org/project/examples",
-            "support": {
-                "source": "http://cgit.drupalcode.org/examples",
-                "issues": "https://www.drupal.org/project/issues/examples",
-                "documentation": "https://api.drupal.org/api/examples"
             }
         },
         {
@@ -9603,6 +9381,228 @@
             "time": "2020-05-09T07:53:22+00:00"
         },
         {
+            "name": "drupal/cron_example",
+            "version": "3.0.1",
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/examples": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.1",
+                    "datestamp": "1605722150",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Itangalo",
+                    "homepage": "https://www.drupal.org/user/153998"
+                },
+                {
+                    "name": "Mile23",
+                    "homepage": "https://www.drupal.org/user/116231"
+                },
+                {
+                    "name": "Torenware",
+                    "homepage": "https://www.drupal.org/user/18784"
+                },
+                {
+                    "name": "add1sun",
+                    "homepage": "https://www.drupal.org/user/65088"
+                },
+                {
+                    "name": "cyberswat",
+                    "homepage": "https://www.drupal.org/user/27802"
+                },
+                {
+                    "name": "ilo",
+                    "homepage": "https://www.drupal.org/user/118449"
+                },
+                {
+                    "name": "jhodgdon",
+                    "homepage": "https://www.drupal.org/user/155601"
+                },
+                {
+                    "name": "jn2",
+                    "homepage": "https://www.drupal.org/user/1001014"
+                },
+                {
+                    "name": "jungle",
+                    "homepage": "https://www.drupal.org/user/2919723"
+                },
+                {
+                    "name": "katbailey",
+                    "homepage": "https://www.drupal.org/user/172987"
+                },
+                {
+                    "name": "linclark",
+                    "homepage": "https://www.drupal.org/user/396253"
+                },
+                {
+                    "name": "marvil07",
+                    "homepage": "https://www.drupal.org/user/132175"
+                },
+                {
+                    "name": "mikl",
+                    "homepage": "https://www.drupal.org/user/58679"
+                },
+                {
+                    "name": "rfay",
+                    "homepage": "https://www.drupal.org/user/30906"
+                },
+                {
+                    "name": "socketwench",
+                    "homepage": "https://www.drupal.org/user/65793"
+                },
+                {
+                    "name": "valthebald",
+                    "homepage": "https://www.drupal.org/user/239562"
+                },
+                {
+                    "name": "yched",
+                    "homepage": "https://www.drupal.org/user/39567"
+                }
+            ],
+            "description": "Demonstrates hook_cron() and related features",
+            "homepage": "https://www.drupal.org/project/examples",
+            "support": {
+                "source": "https://git.drupalcode.org/project/examples"
+            }
+        },
+        {
+            "name": "drupal/examples",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/examples.git",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/examples-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "b17fa7f2e65d70511973090f65efa8403bf71e3c"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupal/stream_wrapper_example": "*"
+            },
+            "suggest": {
+                "drupal/devel": "Some modules will be able to pretty-print PHP with this module."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.1",
+                    "datestamp": "1605722150",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Itangalo",
+                    "homepage": "https://www.drupal.org/user/153998"
+                },
+                {
+                    "name": "Mile23",
+                    "homepage": "https://www.drupal.org/user/116231"
+                },
+                {
+                    "name": "Torenware",
+                    "homepage": "https://www.drupal.org/user/18784"
+                },
+                {
+                    "name": "add1sun",
+                    "homepage": "https://www.drupal.org/user/65088"
+                },
+                {
+                    "name": "cyberswat",
+                    "homepage": "https://www.drupal.org/user/27802"
+                },
+                {
+                    "name": "ilo",
+                    "homepage": "https://www.drupal.org/user/118449"
+                },
+                {
+                    "name": "jhodgdon",
+                    "homepage": "https://www.drupal.org/user/155601"
+                },
+                {
+                    "name": "jn2",
+                    "homepage": "https://www.drupal.org/user/1001014"
+                },
+                {
+                    "name": "jungle",
+                    "homepage": "https://www.drupal.org/user/2919723"
+                },
+                {
+                    "name": "katbailey",
+                    "homepage": "https://www.drupal.org/user/172987"
+                },
+                {
+                    "name": "linclark",
+                    "homepage": "https://www.drupal.org/user/396253"
+                },
+                {
+                    "name": "marvil07",
+                    "homepage": "https://www.drupal.org/user/132175"
+                },
+                {
+                    "name": "mikl",
+                    "homepage": "https://www.drupal.org/user/58679"
+                },
+                {
+                    "name": "rfay",
+                    "homepage": "https://www.drupal.org/user/30906"
+                },
+                {
+                    "name": "socketwench",
+                    "homepage": "https://www.drupal.org/user/65793"
+                },
+                {
+                    "name": "valthebald",
+                    "homepage": "https://www.drupal.org/user/239562"
+                },
+                {
+                    "name": "yched",
+                    "homepage": "https://www.drupal.org/user/39567"
+                }
+            ],
+            "description": "The Examples for Developers project aims to provide high-quality, well-documented API examples for a broad range of Drupal core functionality.",
+            "homepage": "https://www.drupal.org/project/examples",
+            "support": {
+                "source": "http://cgit.drupalcode.org/examples",
+                "issues": "https://www.drupal.org/project/issues/examples",
+                "documentation": "https://api.drupal.org/api/examples"
+            }
+        },
+        {
             "name": "fabpot/goutte",
             "version": "v3.2.3",
             "source": {
@@ -11517,16 +11517,16 @@
         },
         {
             "name": "sirbrillig/phpcs-variable-analysis",
-            "version": "v2.10.0",
+            "version": "v2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirbrillig/phpcs-variable-analysis.git",
-                "reference": "50486555fae72a6401ad0337d0b71fd9e775b2f2"
+                "reference": "c6716a98fe7bee25d31306e14fb62c3ffa16d70a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirbrillig/phpcs-variable-analysis/zipball/50486555fae72a6401ad0337d0b71fd9e775b2f2",
-                "reference": "50486555fae72a6401ad0337d0b71fd9e775b2f2",
+                "url": "https://api.github.com/repos/sirbrillig/phpcs-variable-analysis/zipball/c6716a98fe7bee25d31306e14fb62c3ffa16d70a",
+                "reference": "c6716a98fe7bee25d31306e14fb62c3ffa16d70a",
                 "shasum": ""
             },
             "require": {
@@ -11566,7 +11566,7 @@
                 "source": "https://github.com/sirbrillig/phpcs-variable-analysis",
                 "wiki": "https://github.com/sirbrillig/phpcs-variable-analysis/wiki"
             },
-            "time": "2020-11-23T17:43:05+00:00"
+            "time": "2020-12-12T18:28:57+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

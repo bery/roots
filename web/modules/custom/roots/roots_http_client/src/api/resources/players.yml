@@ -1,7 +1,7 @@
 operations:
-  FindPlaces:
+  FindPlayers:
     httpMethod: "GET"
-    uri: "places"
+    uri: "players"
     summary: "Find all the available posts."
     responseClass: "PlacesList"
     parameters:
@@ -11,9 +11,9 @@ operations:
         required: false
         type: "integer"
 
-  FindPlace:
+  FindPlayer:
     httpMethod: "GET"
-    uri: "places/{id}"
+    uri: "player/{id}"
     summary: "Find a single post by id."
     parameters:
       id:
@@ -24,28 +24,31 @@ operations:
     responseModel: "Place"
 
 models:
-  Place:
+  Player:
     type: "object"
     location: "json"
     properties:
       id:
         location: "json"
         type: "string"
-      name:
+      firstName:
         location: "json"
         type: "string"
-      city:
+      lastName:
         location: "json"
         type: "string"
-      country:
+      nickName:
         location: "json"
         type: "object"
-      street:
+      gender:
+        location: "json"
+        type: "string"
+      maidenName:
         location: "json"
         type: "string"
 
-  PlacesList:
+  PlayerList:
     type: "array"
     location: "json"
     items:
-      "$ref": "Place"
+      "$ref": "Player"

@@ -12,6 +12,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @package Drupal\acme_pages\Controller
  */
-class EventsController extends BaseController {
-  protected $entity = 'Events';
+class PlayersController extends BaseController {
+  protected $entity = 'Players';
 }

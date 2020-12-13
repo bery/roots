@@ -4,4 +4,5 @@ description: "Client wrapper for the HFO Services API."
 imports:
   - "resources/events.yml"
   - "resources/places.yml"
+  - "resources/players.yml"
 

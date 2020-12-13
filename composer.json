@@ -25,7 +25,6 @@
         "drupal/console": "~1.0",
         "drupal/core": "^8.8.0",
         "drupal/core-composer-scaffold": "^8.8.0",
-        "drupal/cron_example": "^3.0",
         "drupal/ctools": "^3.4",
         "drupal/devel": "^4.0",
         "drupal/features": "^3.11",
@@ -41,7 +40,8 @@
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
-        "drupal/core-dev": "^8.8.0"
+        "drupal/core-dev": "^8.8.0",
+        "drupal/cron_example": "^3.0"
     },
     "conflict": {
         "drupal/drupal": "*"
