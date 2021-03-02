@@ -1,4 +1,4 @@
-langcode: cs
+langcode: en
 status: true
 dependencies:
   config:
@@ -10,7 +10,7 @@ id: node.event.field_end_date
 field_name: field_end_date
 entity_type: node
 bundle: event
-label: 'End date'
+label: 'End Date'
 description: ''
 required: true
 translatable: false

@@ -34,7 +34,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_end_date:
-    weight: 123
+    weight: 126
     settings: {  }
     third_party_settings: {  }
     type: datetime_default

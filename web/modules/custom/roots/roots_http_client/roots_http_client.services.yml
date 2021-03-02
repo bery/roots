@@ -8,8 +8,8 @@ services:
     tags:
       - { name: event_subscriber }
 
-  roots_http_client.api_wrapper.events:
-    class: Drupal\roots_http_client\Plugin\HttpServiceApiWrapper\HttpServiceApiWrapperEvents
-    parent: http_client_manager.api_wrapper.base
-    tags:
-      - { name: 'roots_http_client_api_wrapper', api: 'events'}
+  # roots_http_client.api_wrapper.events:
+  #   class: Drupal\roots_http_client\Plugin\HttpServiceApiWrapper\HttpServiceApiWrapperEvents
+  #   parent: http_client_manager.api_wrapper.base
+  #   tags:
+  #     - { name: 'roots_http_client_api_wrapper', api: 'events'}

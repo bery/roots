@@ -1,5 +1,5 @@
 roots_http_client.events:
-  path: '/events'
+  path: '/roots_events'
   defaults:
     _controller: '\Drupal\roots_http_client\Controller\EventsController::execute'
     _title: 'Events'
@@ -7,7 +7,7 @@ roots_http_client.events:
     _permission: 'access content'
 
 roots_http_client.places:
-  path: '/places'
+  path: '/roots_places'
   defaults:
     _controller: '\Drupal\roots_http_client\Controller\PlacesController::execute'
     _title: 'Places'

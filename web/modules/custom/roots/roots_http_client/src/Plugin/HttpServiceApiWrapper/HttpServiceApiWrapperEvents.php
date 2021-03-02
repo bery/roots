@@ -58,12 +58,12 @@ class HttpServiceApiWrapperEvents extends HttpServiceApiWrapperBase {
    * @return array
    *   An array representing the Post matching the provided id.
    */
-  public function findEvents($postId) {
-    $args = [
-      'eventId' => (int) $postId,
-    ];
-    return $this->call(Events::FIND_EVENTS, $args)->toArray();
-  }
+  // public function findEvents($postId) {
+  //   $args = [
+  //     'eventId' => (int) $postId,
+  //   ];
+  //   return $this->call(Events::FIND_EVENTS, $args)->toArray();
+  // }
 
   // /**
   //  * Find Comments.

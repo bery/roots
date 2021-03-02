@@ -1,15 +1,15 @@
 name: Event
 description: 'Provides Event content type and related configuration. '
 type: module
-core: 8.x
 dependencies:
-  - datetime
-  - field
-  - language
-  - menu_ui
-  - node
-  - options
-  - path
-  - text
-  - user
-  - views
+  - 'drupal:datetime'
+  - 'drupal:field'
+  - 'drupal:language'
+  - 'drupal:menu_ui'
+  - 'drupal:node'
+  - 'drupal:options'
+  - 'drupal:path'
+  - 'drupal:text'
+  - 'drupal:user'
+  - 'drupal:views'
+core_version_requirement: '^8.9 || ^9'

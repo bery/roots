@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_end_date
-field_name: field_end_date
+id: node.field_ranking_points
+field_name: field_ranking_points
 entity_type: node
-type: datetime
+type: integer
 settings:
-  datetime_type: datetime
-module: datetime
+  unsigned: false
+  size: normal
+module: core
 locked: false
 cardinality: 1
 translatable: true

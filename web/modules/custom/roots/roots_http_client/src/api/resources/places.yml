@@ -4,12 +4,12 @@ operations:
     uri: "places"
     summary: "Find all the available posts."
     responseClass: "PlacesList"
-    parameters:
-      pageCount:
-        location: "query"
-        description: "Filter events by id"
-        required: false
-        type: "integer"
+    # parameters:
+    #   pageCount:
+    #     location: "query"
+    #     description: "Filter events by id"
+    #     required: false
+    #     type: "integer"
 
   FindPlace:
     httpMethod: "GET"
@@ -45,7 +45,11 @@ models:
         type: "string"
 
   PlacesList:
-    type: "array"
+    type: "object"
     location: "json"
-    items:
-      "$ref": "Place"
+    properties:
+      data:
+        type: "array"
+        location: "json"
+        items:
+          "$ref": "Place"

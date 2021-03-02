@@ -17,6 +17,8 @@ class BaseController extends ControllerBase {
 
   protected $entity;
 
+  protected $_mapping = [];
+
   /**
    * An ACME Services - Contents HTTP Client.
    *
@@ -53,7 +55,7 @@ class BaseController extends ControllerBase {
     $client = $this->httpClient;
     $post_link = TRUE;
     $command = 'Find' . $this->entity;
-    $params = ['pageCount' => 10];
+    $params = [];
 
     if (!empty($postId)) {
       $post_link = FALSE;
@@ -61,14 +63,14 @@ class BaseController extends ControllerBase {
       $params = ['placeId' => (int) $postId];
     }
     $response = $client->FindPlayers($params);
-
+    var_dump($response);
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }
 
     $build = [];
 
-    foreach ($response as $id => $post) {
+    foreach ($response['data'] as $id => $post) {
       // $build[$id] = $this->buildPostResponse($post, $post_link);
       // Create node object with attached file.
       $entity_type="node";
@@ -78,13 +80,11 @@ class BaseController extends ControllerBase {
       $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
 
       //load up an array for creation
-      dpm($post);
       $name = isset($post['nickName']) ? sprintf("%s %s (%s)", $post['firstName'], $post['lastName'], $post['nickName']) : sprintf("%s %s", $post['firstName'], $post['lastName']);
       $new_node=array(
         //set title
         'uuid' => $post['id'],
         'title' => $name,
-        'uuid' => $post['id'],
         'field_firstname' => $post['firstName'],
         'field_lastname' => $post['lastName'],
         'field_nickname' => isset($post['nickName']) ? $post['nickName'] : "",

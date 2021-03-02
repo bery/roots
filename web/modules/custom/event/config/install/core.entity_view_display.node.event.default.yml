@@ -26,7 +26,7 @@ content:
     third_party_settings: {  }
     region: content
   field_end_date:
-    weight: 103
+    weight: 106
     label: above
     settings:
       format_type: medium

@@ -3,7 +3,7 @@ operations:
     httpMethod: "GET"
     uri: "players"
     summary: "Find all the available posts."
-    responseClass: "PlacesList"
+    responseClass: "PlayerList"
     parameters:
       pageCount:
         location: "query"
@@ -48,7 +48,11 @@ models:
         type: "string"
 
   PlayerList:
-    type: "array"
+    type: "object"
     location: "json"
-    items:
-      "$ref": "Player"
+    properties:
+      data:
+        type: "array"
+        location: "json"
+        items:
+          "$ref": "Player"
