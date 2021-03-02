@@ -51,6 +51,7 @@ class PlacesController extends BaseController {
       //load up an array for creation
       $new_node=array(
         //set title
+        'uuid' => $post['id'],
         'title' => $post['name'],
         'field_address' => [
           'country_code' => ($post['country']['code']) ? $post['country']['code'] : "CZ",

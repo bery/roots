@@ -63,7 +63,7 @@ class BaseController extends ControllerBase {
       $params = ['placeId' => (int) $postId];
     }
     $response = $client->FindPlayers($params);
-    var_dump($response);
+    // var_dump($response);
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }

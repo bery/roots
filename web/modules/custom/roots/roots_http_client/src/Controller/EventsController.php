@@ -43,7 +43,6 @@ class EventsController extends BaseController {
     foreach ($response['data'] as $id => $post) {
       // $build[$id] = $this->buildPostResponse($post, $post_link);
       // Create node object with attached file.
-      var_dump($post['start']);
       $entity_type="node";
       $bundle="event";
 
@@ -53,7 +52,13 @@ class EventsController extends BaseController {
       $dtimeFormat = $dtime->format(self::DATETIME_STORAGE_FORMAT);
       $dtimeEnd = \DateTime::createFromFormat("Y-m-d\TH:i:s.u\Z", $post['end']);
       $dtimeFormatEnd = $dtime->format(self::DATETIME_STORAGE_FORMAT);
-      var_dump($dtimeFormat);
+      $uuid = $post['place']['id'];
+      $query = \Drupal::database()->select('node', 'n');
+      $query->addField('n', 'nid');
+      $query->condition('n.type', 'place');
+      $query->condition('n.uuid', $uuid);
+      $results = $query->execute()->fetch();
+      $place_nid = $results->nid;
       //load up an array for creation
       $new_node=array(
         //set title
@@ -61,7 +66,8 @@ class EventsController extends BaseController {
         'title' => $post['name'],
         'field_start' => $dtimeFormat,
         'field_end_date' => $dtimeFormatEnd,
-        'field_place' => $post['place']['id'],
+        'field_place' => $place_nid,
+        'field_state' => $post['state'],
         //set body
         // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
         $entity_def->get('entity_keys')['bundle']=>$bundle
