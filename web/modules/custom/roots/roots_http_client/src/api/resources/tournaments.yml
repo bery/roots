@@ -1,9 +1,9 @@
 operations:
-  FindEvents:
+  FindTournaments:
     httpMethod: "GET"
-    uri: "events"
+    uri: "tournaments"
     summary: "Find all the available events."
-    responseClass: "EventsList"
+    responseClass: "TournamentList"
     parameters:
       pageCount:
         location: "uri"
@@ -11,9 +11,9 @@ operations:
         required: true
         type: "integer"
 
-  FindEvent:
+  FindTournament:
     httpMethod: "GET"
-    uri: "events/{postId}"
+    uri: "tournaments/{postId}"
     summary: "Find a single post by id."
     parameters:
       postId:
@@ -24,7 +24,7 @@ operations:
     responseModel: "Event"
 
 models:
-  Event:
+  Tournament:
     type: "object"
     location: "json"
     properties:
@@ -45,24 +45,8 @@ models:
         type: "array"
         items:
           "$ref": "Tournament"
-  Tournament:
-    type: "object"
-    location: "json"
-    properties:
-      id:
-        location: "json"
-        type: "string"
-      name:
-        location: "json"
-        type: "string"
-      start:
-        location: "json"
-        type: "string"
-      preregistration:
-        location: "json"
-        type: "string"
 
-  EventsList:
+  TournamentList:
     type: "object"
     location: "json"
     properties:

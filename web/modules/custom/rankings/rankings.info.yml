@@ -1,13 +1,13 @@
 name: Rankings
 description: 'Provides Rankings content type and related configuration. '
 type: module
-core: 8.x
 dependencies:
-  - field
-  - language
-  - menu_ui
-  - node
-  - path
-  - text
-  - user
-  - views
+  - 'drupal:field'
+  - 'drupal:language'
+  - 'drupal:menu_ui'
+  - 'drupal:node'
+  - 'drupal:path'
+  - 'drupal:text'
+  - 'drupal:user'
+  - 'drupal:views'
+core_version_requirement: '^8.9 || ^9'

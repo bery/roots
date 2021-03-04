@@ -34,6 +34,7 @@ class EventsController extends BaseController {
       $params = ['placeId' => (int) $postId];
     }
     $response = $client->FindEvents($params);
+    var_dump($response);die();
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }
@@ -53,17 +54,13 @@ class EventsController extends BaseController {
       $dtimeEnd = \DateTime::createFromFormat("Y-m-d\TH:i:s.u\Z", $post['end']);
       $dtimeFormatEnd = $dtime->format(self::DATETIME_STORAGE_FORMAT);
       $uuid = $post['place']['id'];
-      $query = \Drupal::database()->select('node', 'n');
-      $query->addField('n', 'nid');
-      $query->condition('n.type', 'place');
-      $query->condition('n.uuid', $uuid);
-      $results = $query->execute()->fetch();
-      $place_nid = $results->nid;
+      $place_nid = $this->getNidByUuid('place', $uuid);
       //load up an array for creation
       $new_node=array(
         //set title
         'uuid' => $post['id'],
         'title' => $post['name'],
+        'status' => 1,
         'field_start' => $dtimeFormat,
         'field_end_date' => $dtimeFormatEnd,
         'field_place' => $place_nid,

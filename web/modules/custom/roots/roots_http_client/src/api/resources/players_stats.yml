@@ -1,0 +1,58 @@
+operations:
+  FindPlayers:
+    httpMethod: "GET"
+    uri: "players"
+    summary: "Find all the available posts."
+    responseClass: "PlayerList"
+    parameters:
+      pageCount:
+        location: "query"
+        description: "Filter events by id"
+        required: false
+        type: "integer"
+
+  FindPlayer:
+    httpMethod: "GET"
+    uri: "player/{id}"
+    summary: "Find a single post by id."
+    parameters:
+      id:
+        location: "uri"
+        description: "Filter posts by id"
+        required: true
+        type: "string"
+    responseModel: "Place"
+
+models:
+  Player:
+    type: "object"
+    location: "json"
+    properties:
+      id:
+        location: "json"
+        type: "string"
+      firstName:
+        location: "json"
+        type: "string"
+      lastName:
+        location: "json"
+        type: "string"
+      nickName:
+        location: "json"
+        type: "object"
+      gender:
+        location: "json"
+        type: "string"
+      maidenName:
+        location: "json"
+        type: "string"
+
+  PlayerList:
+    type: "object"
+    location: "json"
+    properties:
+      data:
+        type: "array"
+        location: "json"
+        items:
+          "$ref": "Player"

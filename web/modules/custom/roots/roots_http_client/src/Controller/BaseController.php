@@ -55,14 +55,14 @@ class BaseController extends ControllerBase {
     $client = $this->httpClient;
     $post_link = TRUE;
     $command = 'Find' . $this->entity;
-    $params = [];
+    $params = ['pageCount' => 100];
 
     if (!empty($postId)) {
       $post_link = FALSE;
       $command = 'FindPlace';
       $params = ['placeId' => (int) $postId];
     }
-    $response = $client->FindPlayers($params);
+    $response = $client->$command($params);
     // var_dump($response);
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
@@ -84,6 +84,7 @@ class BaseController extends ControllerBase {
       $new_node=array(
         //set title
         'uuid' => $post['id'],
+        'status' => 1,
         'title' => $name,
         'field_firstname' => $post['firstName'],
         'field_lastname' => $post['lastName'],
@@ -132,6 +133,16 @@ class BaseController extends ControllerBase {
     ];
 
     return $output;
+  }
+
+  protected function getNidByUuid($contenType, $uuid){
+    //TODO add static cache to improve performance
+    $query = \Drupal::database()->select('node', 'n');
+      $query->addField('n', 'nid');
+      $query->condition('n.type', $contenType);
+      $query->condition('n.uuid', $uuid);
+      $results = $query->execute()->fetch();
+      return $results->nid;
   }
 
 }

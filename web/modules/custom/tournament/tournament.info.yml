@@ -1,0 +1,13 @@
+name: Tournament
+description: 'Provides Tournament content type and related configuration. '
+type: module
+core_version_requirement: '^8.9 || ^9'
+dependencies:
+  - datetime
+  - field
+  - language
+  - menu_ui
+  - node
+  - path
+  - text
+  - user

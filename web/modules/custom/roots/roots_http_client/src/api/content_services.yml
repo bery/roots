@@ -5,4 +5,6 @@ imports:
   - "resources/events.yml"
   - "resources/places.yml"
   - "resources/players.yml"
-
+  # - "resources/players_stats.yml"
+  - "resources/rankings.yml"
+  - "resources/tournaments.yml"

@@ -1,9 +1,9 @@
 operations:
-  FindEvents:
+  FindRankings:
     httpMethod: "GET"
-    uri: "events"
+    uri: "rankings"
     summary: "Find all the available events."
-    responseClass: "EventsList"
+    responseClass: "RankingsList"
     parameters:
       pageCount:
         location: "uri"
@@ -11,9 +11,9 @@ operations:
         required: true
         type: "integer"
 
-  FindEvent:
+  FindRanking:
     httpMethod: "GET"
-    uri: "events/{postId}"
+    uri: "rankings/{postId}"
     summary: "Find a single post by id."
     parameters:
       postId:
@@ -24,7 +24,7 @@ operations:
     responseModel: "Event"
 
 models:
-  Event:
+  Ranking:
     type: "object"
     location: "json"
     properties:
@@ -34,35 +34,14 @@ models:
       name:
         location: "json"
         type: "string"
-      city:
+      playersCount:
         location: "json"
         type: "string"
-      street:
-        location: "json"
-        type: "string"
-      tournaments:
-        location: "json"
-        type: "array"
-        items:
-          "$ref": "Tournament"
-  Tournament:
-    type: "object"
-    location: "json"
-    properties:
-      id:
-        location: "json"
-        type: "string"
-      name:
-        location: "json"
-        type: "string"
-      start:
-        location: "json"
-        type: "string"
-      preregistration:
+      tournamentsCount:
         location: "json"
         type: "string"
 
-  EventsList:
+  RankingsList:
     type: "object"
     location: "json"
     properties:

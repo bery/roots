@@ -1,18 +1,17 @@
-langcode: cs
+langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.rankings.body
-    - field.field.node.rankings.field_player_count
-    - field.field.node.rankings.field_tournament_count
-    - node.type.rankings
+    - field.field.node.tournament.body
+    - field.field.node.tournament.field_tournament_start
+    - node.type.tournament
   module:
     - text
     - user
-id: node.rankings.teaser
+id: node.tournament.teaser
 targetEntityType: node
-bundle: rankings
+bundle: tournament
 mode: teaser
 content:
   body:
@@ -29,6 +28,5 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_player_count: true
-  field_tournament_count: true
+  field_tournament_start: true
   langcode: true

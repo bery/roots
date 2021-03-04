@@ -12,8 +12,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @package Drupal\acme_pages\Controller
  */
-class PlacesController extends BaseController {
-  protected $entity = 'Places';
+class RankingsController extends BaseController {
+  protected $entity = 'Rankings';
 
   /**
    * Display the markup.
@@ -24,15 +24,16 @@ class PlacesController extends BaseController {
   public function execute() {
     $client = $this->httpClient;
     $post_link = TRUE;
-    $command = 'FindPlaces';
-    $params = ['pageCount' => 100];
+    $command = 'Find' . $this->entity;
+    $params = ['pageCount' => 1000];
 
     if (!empty($postId)) {
       $post_link = FALSE;
       $command = 'FindPlace';
       $params = ['placeId' => (int) $postId];
     }
-    $response = $client->FindPlaces($params);
+    $response = $client->$command($params);
+    // var_dump($response);
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }
@@ -43,7 +44,7 @@ class PlacesController extends BaseController {
       // $build[$id] = $this->buildPostResponse($post, $post_link);
       // Create node object with attached file.
       $entity_type="node";
-      $bundle="place";
+      $bundle="rankings";
 
       //get definition of target entity type
       $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
@@ -54,11 +55,8 @@ class PlacesController extends BaseController {
         'uuid' => $post['id'],
         'status' => 1,
         'title' => $post['name'],
-        'field_address' => [
-          'country_code' => ($post['country']['code']) ? $post['country']['code'] : "CZ",
-          'address_line1' => $post['street'],
-          'locality' => $post['city'],
-        ],
+        'field_player_count' => $post['playersCount'],
+        'field_tournament_count' => $post['tournamentsCount'],
         //set body
         // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
         $entity_def->get('entity_keys')['bundle']=>$bundle

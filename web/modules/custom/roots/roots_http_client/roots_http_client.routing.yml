@@ -15,9 +15,17 @@ roots_http_client.places:
     _permission: 'access content'
 
 roots_http_client.players:
-  path: '/players'
+  path: '/roots_players'
   defaults:
     _controller: '\Drupal\roots_http_client\Controller\PlayersController::execute'
     _title: 'Players'
+  requirements:
+    _permission: 'access content'
+
+roots_http_client.rankings:
+  path: '/roots_rankings'
+  defaults:
+    _controller: '\Drupal\roots_http_client\Controller\RankingsController::execute'
+    _title: 'Rankings'
   requirements:
     _permission: 'access content'

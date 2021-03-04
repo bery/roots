@@ -1,12 +1,13 @@
 name: Place
 description: 'Provides Place content type and related configuration. '
 type: module
-core: 8.x
 dependencies:
-  - address
-  - field
-  - language
-  - menu_ui
-  - node
-  - path
-  - user
+  - 'address:address'
+  - 'drupal:field'
+  - 'drupal:language'
+  - 'drupal:menu_ui'
+  - 'drupal:node'
+  - 'drupal:path'
+  - 'drupal:user'
+  - 'drupal:views'
+core_version_requirement: '^8.9 || ^9'
