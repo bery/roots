@@ -6,7 +6,7 @@ operations:
     responseClass: "RankingsList"
     parameters:
       pageCount:
-        location: "uri"
+        location: "query"
         description: "Filter events by id"
         required: true
         type: "integer"
@@ -20,8 +20,8 @@ operations:
         location: "uri"
         description: "Filter events by id"
         required: true
-        type: "integer"
-    responseModel: "Event"
+        type: "string"
+    responseModel: "Ranking"
 
 models:
   Ranking:
@@ -40,6 +40,14 @@ models:
       tournamentsCount:
         location: "json"
         type: "string"
+      closed:
+        location: "json"
+        type: "string"
+      players:
+        location: "json"
+        type: "array"
+        items:
+          "$ref": "Player"
 
   RankingsList:
     type: "object"
@@ -49,4 +57,4 @@ models:
         type: "array"
         location: "json"
         items:
-          "$ref": "Event"
+          "$ref": "Ranking"

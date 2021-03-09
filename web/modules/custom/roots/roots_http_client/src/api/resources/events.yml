@@ -6,7 +6,7 @@ operations:
     responseClass: "EventsList"
     parameters:
       pageCount:
-        location: "uri"
+        location: "query"
         description: "Filter events by id"
         required: true
         type: "integer"

@@ -33,24 +33,17 @@ class RankingsController extends BaseController {
       $params = ['placeId' => (int) $postId];
     }
     $response = $client->$command($params);
-    // var_dump($response);
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }
 
     $build = [];
-
     foreach ($response['data'] as $id => $post) {
       // $build[$id] = $this->buildPostResponse($post, $post_link);
       // Create node object with attached file.
-      $entity_type="node";
       $bundle="rankings";
 
-      //get definition of target entity type
-      $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
-
-      //load up an array for creation
-      $new_node=array(
+      $new_node_data=array(
         //set title
         'uuid' => $post['id'],
         'status' => 1,
@@ -59,11 +52,39 @@ class RankingsController extends BaseController {
         'field_tournament_count' => $post['tournamentsCount'],
         //set body
         // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
-        $entity_def->get('entity_keys')['bundle']=>$bundle
       );
 
-      $new_post = \Drupal::entityManager()->getStorage($entity_type)->create($new_node);
-      $new_post->save();
+      try{
+        // $new_node = $this->createNode($bundle, $new_node_data);
+        $res = $client->FindRanking(['postId' => $post['id']]);
+        $bundle="ranking_player";
+        if(isset($res['players']) && count($res['players']>0)){
+          foreach($res['players'] as $player){
+            $player_nid = $this->getNidByUuid("player", $player['id']);
+            if($player_nid){
+              $new_node_data=array(
+                //set title
+                // 'uuid' => $player['id'],
+                'field_player' => $player_nid,
+                'field_ranking' => $new_node->nid,
+                'status' => 1,
+                'title' => sprintf("%s - %s %s (%s)",$post['name'], $player['firstName'], $player['lastName'], $player['rank']),
+                'field_rank' => $player['rank'],
+                'field_ranking_points' => $player['points'],
+                //set body
+                // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
+              );
+              $new_node = $this->createNode($bundle, $new_node_data);
+            } else {
+              var_dump("player not found " . $player['id']);
+              var_dump($player);
+            }
+          }
+        }
+
+      } catch (\Exception $e){
+        var_dump($e->getMessage());
+      }
     }
 
     return $build;

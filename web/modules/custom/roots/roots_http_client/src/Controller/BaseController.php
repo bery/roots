@@ -55,7 +55,7 @@ class BaseController extends ControllerBase {
     $client = $this->httpClient;
     $post_link = TRUE;
     $command = 'Find' . $this->entity;
-    $params = ['pageCount' => 100];
+    $params = ['pageCount' => 10000];
 
     if (!empty($postId)) {
       $post_link = FALSE;
@@ -63,7 +63,6 @@ class BaseController extends ControllerBase {
       $params = ['placeId' => (int) $postId];
     }
     $response = $client->$command($params);
-    // var_dump($response);
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }
@@ -119,7 +118,6 @@ class BaseController extends ControllerBase {
     $link_text = $post_link ? $this->t('Read more') : $this->t('Back to list');
     $route_params = $post_link ? ['postId' => $post['id']] : [];
 
-    // var_dump($post);die();
     $output = [
       '#type' => 'fieldset',
       '#title' => $post['name'],
@@ -141,8 +139,23 @@ class BaseController extends ControllerBase {
       $query->addField('n', 'nid');
       $query->condition('n.type', $contenType);
       $query->condition('n.uuid', $uuid);
-      $results = $query->execute()->fetch();
-      return $results->nid;
+      $result = $query->execute()->fetch();
+      if($result){
+        return $result->nid;
+      }
+      return null;
+  }
+
+  protected function createNode($bundle, $fields, $entity_type = 'node'){
+
+      //get definition of target entity type
+      $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
+
+      $new_node= array_merge($fields, array($entity_def->get('entity_keys')['bundle']=>$bundle));
+
+      $new_post = \Drupal::entityManager()->getStorage($entity_type)->create($new_node);
+      $new_post->save();
+      return $new_post;
   }
 
 }
