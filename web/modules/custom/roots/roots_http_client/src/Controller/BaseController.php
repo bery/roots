@@ -14,6 +14,8 @@ use \Drupal\node\Entity\Node;
  * @package Drupal\acme_pages\Controller
  */
 class BaseController extends ControllerBase {
+  const DATETIME_STORAGE_FORMAT = "Y-m-d\TH:i:s";
+  const DATE_STORAGE_FORMAT = "Y-m-d";
 
   protected $entity;
 
@@ -156,6 +158,11 @@ class BaseController extends ControllerBase {
       $new_post = \Drupal::entityManager()->getStorage($entity_type)->create($new_node);
       $new_post->save();
       return $new_post;
+  }
+
+  protected function formatDate($date){
+    $dtime = \DateTime::createFromFormat("Y-m-d\TH:i:s.u\Z", $date);
+    return $dtime->format(self::DATETIME_STORAGE_FORMAT);
   }
 
 }

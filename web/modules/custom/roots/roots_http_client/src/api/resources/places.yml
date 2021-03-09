@@ -4,12 +4,12 @@ operations:
     uri: "places"
     summary: "Find all the available posts."
     responseClass: "PlacesList"
-    # parameters:
-    #   pageCount:
-    #     location: "query"
-    #     description: "Filter events by id"
-    #     required: false
-    #     type: "integer"
+    parameters:
+      pageCount:
+        location: "query"
+        description: "Filter events by id"
+        required: false
+        type: "integer"
 
   FindPlace:
     httpMethod: "GET"

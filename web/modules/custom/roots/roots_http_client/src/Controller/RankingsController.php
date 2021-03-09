@@ -55,10 +55,10 @@ class RankingsController extends BaseController {
       );
 
       try{
-        // $new_node = $this->createNode($bundle, $new_node_data);
+        $new_node = $this->createNode($bundle, $new_node_data);
         $res = $client->FindRanking(['postId' => $post['id']]);
         $bundle="ranking_player";
-        if(isset($res['players']) && count($res['players']>0)){
+        if(isset($res['players']) && count($res['players'])>0){
           foreach($res['players'] as $player){
             $player_nid = $this->getNidByUuid("player", $player['id']);
             if($player_nid){

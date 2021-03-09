@@ -20,7 +20,7 @@ operations:
         location: "uri"
         description: "Filter events by id"
         required: true
-        type: "integer"
+        type: "string"
     responseModel: "Event"
 
 models:

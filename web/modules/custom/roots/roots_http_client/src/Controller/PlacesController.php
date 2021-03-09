@@ -25,7 +25,7 @@ class PlacesController extends BaseController {
     $client = $this->httpClient;
     $post_link = TRUE;
     $command = 'FindPlaces';
-    $params = ['pageCount' => 100];
+    $params = ['pageCount' => 10000];
 
     if (!empty($postId)) {
       $post_link = FALSE;
@@ -56,8 +56,8 @@ class PlacesController extends BaseController {
         'title' => $post['name'],
         'field_address' => [
           'country_code' => ($post['country']['code']) ? $post['country']['code'] : "CZ",
-          'address_line1' => $post['street'],
-          'locality' => $post['city'],
+          'address_line1' => (isset($post['street'])) ? $post['street'] : null,
+          'locality' => (isset($post['city'])) ? $post['city'] : null,
         ],
         //set body
         // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',

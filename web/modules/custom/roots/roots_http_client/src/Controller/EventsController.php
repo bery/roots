@@ -26,7 +26,7 @@ class EventsController extends BaseController {
     $client = $this->httpClient;
     $post_link = TRUE;
     $command = 'Find' . $this->entity;
-    $params = ['pageCount' => 1000];
+    $params = ['pageCount' => 10000];
 
     if (!empty($postId)) {
       $post_link = FALSE;
@@ -34,7 +34,6 @@ class EventsController extends BaseController {
       $params = ['placeId' => (int) $postId];
     }
     $response = $client->FindEvents($params);
-    var_dump($response);die();
     if (!empty($postId)) {
       $response = [$postId => $response->toArray()];
     }
@@ -44,19 +43,15 @@ class EventsController extends BaseController {
     foreach ($response['data'] as $id => $post) {
       // $build[$id] = $this->buildPostResponse($post, $post_link);
       // Create node object with attached file.
-      $entity_type="node";
       $bundle="event";
 
       //get definition of target entity type
-      $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
-      $dtime = \DateTime::createFromFormat("Y-m-d\TH:i:s.u\Z", $post['start']);
-      $dtimeFormat = $dtime->format(self::DATETIME_STORAGE_FORMAT);
-      $dtimeEnd = \DateTime::createFromFormat("Y-m-d\TH:i:s.u\Z", $post['end']);
-      $dtimeFormatEnd = $dtime->format(self::DATETIME_STORAGE_FORMAT);
+      $dtimeFormat = $this->formatDate($post['start']);
+      $dtimeFormatEnd = $this->formatDate($post['end']);
       $uuid = $post['place']['id'];
       $place_nid = $this->getNidByUuid('place', $uuid);
       //load up an array for creation
-      $new_node=array(
+      $new_node_data=array(
         //set title
         'uuid' => $post['id'],
         'title' => $post['name'],
@@ -65,13 +60,41 @@ class EventsController extends BaseController {
         'field_end_date' => $dtimeFormatEnd,
         'field_place' => $place_nid,
         'field_state' => $post['state'],
-        //set body
-        // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
-        $entity_def->get('entity_keys')['bundle']=>$bundle
       );
 
-      $new_post = \Drupal::entityManager()->getStorage($entity_type)->create($new_node);
-      $new_post->save();
+      try{
+        $new_node = $this->createNode($bundle, $new_node_data);
+        $res = $client->FindEvent(['postId' => $post['id']]);
+        $bundle="tournament";
+        if(isset($res['tournaments']) && count($res['tournaments'])>0){
+          foreach($res['tournaments'] as $player){
+            // $player_nid = $this->getNidByUuid("event", $player['id']);
+            if($player_nid){
+              $dtimeFormatStart = $this->formatDate($player['start']);
+              $dtimeFormatEnd = $this->formatDate($player['end']);
+              $new_node_data=array(
+                //set title
+                'uuid' => $player['id'],
+                'field_tournament_event' => $new_node->nid,
+                'field_tournament_place' => $place_nid,
+                'status' => 1,
+                'title' => $player['name'],
+                'field_tournament_end' => $dtimeFormatEnd,
+                'field_tournament_start' => $dtimeFormatStart,
+                //set body
+                // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
+              );
+              $new_node = $this->createNode($bundle, $new_node_data);
+            } else {
+              var_dump("player not found " . $player['id']);
+              var_dump($player);
+            }
+          }
+        }
+
+      } catch (\Exception $e){
+        var_dump($e->getMessage());
+      }
     }
 
     return $build;
