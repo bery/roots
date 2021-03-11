@@ -28,13 +28,12 @@ class RankingsController extends BaseController {
     $params = ['pageCount' => 1000];
 
     if (!empty($postId)) {
-      $post_link = FALSE;
-      $command = 'FindPlace';
-      $params = ['placeId' => (int) $postId];
+      $command = "FindRanking";
+      $params = ['rankingId' => $postId];
     }
     $response = $client->$command($params);
     if (!empty($postId)) {
-      $response = [$postId => $response->toArray()];
+      $response['data'] = $response->toArray();
     }
 
     $build = [];
@@ -56,23 +55,23 @@ class RankingsController extends BaseController {
 
       try{
         $new_node = $this->createNode($bundle, $new_node_data);
-        $res = $client->FindRanking(['postId' => $post['id']]);
+
+        $res = $client->FindRanking(['rankingId' => $post['id']]);
         $bundle="ranking_player";
         if(isset($res['players']) && count($res['players'])>0){
           foreach($res['players'] as $player){
             $player_nid = $this->getNidByUuid("player", $player['id']);
+            $rankindId = $this->getNidByUuid("rankings", $post['id']);
             if($player_nid){
               $new_node_data=array(
                 //set title
-                // 'uuid' => $player['id'],
+                'uuid' => $player['playerRankingId'],
                 'field_player' => $player_nid,
-                'field_ranking' => $new_node->nid,
+                'field_ranking' => $rankindId,
                 'status' => 1,
                 'title' => sprintf("%s - %s %s (%s)",$post['name'], $player['firstName'], $player['lastName'], $player['rank']),
                 'field_rank' => $player['rank'],
                 'field_ranking_points' => $player['points'],
-                //set body
-                // 'body' => 'this is a test body, can also be set as an array with "value" and "format" as keys I believe',
               );
               $new_node = $this->createNode($bundle, $new_node_data);
             } else {

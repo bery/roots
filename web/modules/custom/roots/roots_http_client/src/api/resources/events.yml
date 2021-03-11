@@ -45,22 +45,6 @@ models:
         type: "array"
         items:
           "$ref": "Tournament"
-  Tournament:
-    type: "object"
-    location: "json"
-    properties:
-      id:
-        location: "json"
-        type: "string"
-      name:
-        location: "json"
-        type: "string"
-      start:
-        location: "json"
-        type: "string"
-      preregistration:
-        location: "json"
-        type: "string"
 
   EventsList:
     type: "object"

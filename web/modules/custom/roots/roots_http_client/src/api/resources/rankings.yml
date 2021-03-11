@@ -13,13 +13,13 @@ operations:
 
   FindRanking:
     httpMethod: "GET"
-    uri: "rankings/{postId}"
+    uri: "rankings/{rankingId}"
     summary: "Find a single post by id."
     parameters:
-      postId:
+      rankingId:
         location: "uri"
         description: "Filter events by id"
-        required: true
+        required: false
         type: "string"
     responseModel: "Ranking"
 
@@ -29,6 +29,9 @@ models:
     location: "json"
     properties:
       id:
+        location: "json"
+        type: "string"
+      playerRankingId:
         location: "json"
         type: "string"
       name:

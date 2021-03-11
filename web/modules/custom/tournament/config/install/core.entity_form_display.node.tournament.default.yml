@@ -3,6 +3,9 @@ status: true
 dependencies:
   config:
     - field.field.node.tournament.body
+    - field.field.node.tournament.field_tournament_end
+    - field.field.node.tournament.field_tournament_event
+    - field.field.node.tournament.field_tournament_place
     - field.field.node.tournament.field_tournament_start
     - node.type.tournament
   module:
@@ -30,6 +33,32 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_tournament_end:
+    weight: 124
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_tournament_event:
+    weight: 125
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_tournament_place:
+    weight: 123
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_tournament_start:
     weight: 122
     settings: {  }

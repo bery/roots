@@ -34,17 +34,12 @@ models:
       name:
         location: "json"
         type: "string"
-      city:
+      start:
         location: "json"
         type: "string"
-      street:
+      preregistration:
         location: "json"
         type: "string"
-      tournaments:
-        location: "json"
-        type: "array"
-        items:
-          "$ref": "Tournament"
 
   TournamentList:
     type: "object"

@@ -4,6 +4,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.tournament.body
+    - field.field.node.tournament.field_tournament_end
+    - field.field.node.tournament.field_tournament_event
+    - field.field.node.tournament.field_tournament_place
     - field.field.node.tournament.field_tournament_start
     - node.type.tournament
   module:
@@ -28,5 +31,8 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_tournament_end: true
+  field_tournament_event: true
+  field_tournament_place: true
   field_tournament_start: true
   langcode: true

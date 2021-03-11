@@ -21,6 +21,8 @@ class BaseController extends ControllerBase {
 
   protected $_mapping = [];
 
+  protected $_nid_uuid_map = [];
+
   /**
    * An ACME Services - Contents HTTP Client.
    *
@@ -137,13 +139,18 @@ class BaseController extends ControllerBase {
 
   protected function getNidByUuid($contenType, $uuid){
     //TODO add static cache to improve performance
+
+    if(isset($this->_nid_uuid_map[$contenType.$uuid])){
+      return $this->_nid_uuid_map[$contenType.$uuid];
+    }
     $query = \Drupal::database()->select('node', 'n');
       $query->addField('n', 'nid');
       $query->condition('n.type', $contenType);
       $query->condition('n.uuid', $uuid);
       $result = $query->execute()->fetch();
       if($result){
-        return $result->nid;
+        $this->_nid_uuid_map[$contenType.$uuid] = $result->nid;
+        return $this->_nid_uuid_map[$contenType.$uuid];
       }
       return null;
   }
@@ -152,12 +159,25 @@ class BaseController extends ControllerBase {
 
       //get definition of target entity type
       $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
+      $nid = $this->getNidByUuid($bundle, $fields['uuid']);
+      if($nid){
+        //update node
+        $new_node = \Drupal::entityManager()->getStorage('node')->load($nid);
+        $new_node_data= array_merge($fields, array($entity_def->get('entity_keys')['bundle']=>$bundle));
+        foreach ($new_node_data as $field => $values) {
+          $new_node->set($field, $values);
+        }
+        $new_node->save();
+      }else{
+        //create node
+        $entity_def = \Drupal::entityManager()->getDefinition($entity_type);
 
-      $new_node= array_merge($fields, array($entity_def->get('entity_keys')['bundle']=>$bundle));
+        $new_node= array_merge($fields, array($entity_def->get('entity_keys')['bundle']=>$bundle));
+        $new_node = \Drupal::entityManager()->getStorage($entity_type)->create($new_node);
+        $new_node->save();
+      }
 
-      $new_post = \Drupal::entityManager()->getStorage($entity_type)->create($new_node);
-      $new_post->save();
-      return $new_post;
+      return $new_node;
   }
 
   protected function formatDate($date){

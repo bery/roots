@@ -4,6 +4,15 @@ default: up
 
 COMPOSER_ROOT ?= /var/www/html
 DRUPAL_ROOT ?= /var/www/html/web
+VOLUMES=-v ${PWD}:/home/circleci/project/ \
+				-v ${HOME}/.azure/:/home/circleci/.azure \
+				-v ${HOME}/.aws/:/home/circleci/.aws \
+				-v ${HOME}/.ssh/:/home/circleci/.ssh \
+				-v ${HOME}/.gitconfig:/home/circleci/.gitconfig \
+				-v ${HOME}/.gnupg/:/home/circleci/.gnupg/ \
+				-v /var/run/docker.sock:/var/run/docker.sock \
+				-v ${PWD}/.bash_history:/home/circleci/.bash_history \
+				-v ${HOME}/.terraform.d/:/home/circleci/.terraform.d/ \
 
 ## help	:	Print commands help.
 .PHONY: help

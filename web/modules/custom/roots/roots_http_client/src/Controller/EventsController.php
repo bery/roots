@@ -67,11 +67,12 @@ class EventsController extends BaseController {
         $res = $client->FindEvent(['postId' => $post['id']]);
         $bundle="tournament";
         if(isset($res['tournaments']) && count($res['tournaments'])>0){
+          var_dump($res);
           foreach($res['tournaments'] as $player){
             // $player_nid = $this->getNidByUuid("event", $player['id']);
-            if($player_nid){
+            if($place_nid && $new_node->nid){
               $dtimeFormatStart = $this->formatDate($player['start']);
-              $dtimeFormatEnd = $this->formatDate($player['end']);
+              // $dtimeFormatEnd = $this->formatDate($player['end']);
               $new_node_data=array(
                 //set title
                 'uuid' => $player['id'],

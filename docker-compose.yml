@@ -19,6 +19,8 @@ services:
   php:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
+    depends_on:
+      - redis
     environment:
       PHP_ERROR_REPORTING: E_ALL
       PHP_DISPLAY_ERRORS: 1
@@ -53,6 +55,7 @@ services:
 #      MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'
     volumes:
     - ./:/var/www/html:cached
+    - "${HOME}/.gitconfig:/home/woodby/.gitconfig"
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/drupal/local#docker-for-mac
 #    - mutagen:/var/www/html
 ## For XHProf and Xdebug profiler traces
@@ -81,6 +84,7 @@ services:
     #      NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
     volumes:
     - ./:/var/www/html:cached
+    - "${HOME}/.gitconfig:/home/woodby/.gitconfig"
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/drupal/local#docker-for-mac
 #    - mutagen:/var/www/html
 
@@ -139,9 +143,9 @@ services:
 #    - "traefik.http.services.${PROJECT_NAME}_varnish.loadbalancer.server.port=6081"
 #    - "traefik.http.routers.${PROJECT_NAME}_varnish.rule=Host(`varnish.${PROJECT_BASE_URL}`)"
 
-  # redis:
-  #  container_name: "${PROJECT_NAME}_redis"
-  #  image: wodby/redis:$REDIS_TAG
+  redis:
+   container_name: "${PROJECT_NAME}_redis"
+   image: wodby/redis:$REDIS_TAG
 
   adminer:
    container_name: "${PROJECT_NAME}_adminer"
