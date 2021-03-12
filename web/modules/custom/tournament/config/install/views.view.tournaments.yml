@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_place
-    - field.storage.node.field_start
-    - node.type.event
+    - core.entity_view_mode.node.teaser
+    - field.storage.node.field_tournament_place
+    - field.storage.node.field_tournament_start
+    - node.type.tournament
     - system.menu.main
   module:
     - datetime
     - node
-    - options
     - user
-id: events
-label: Events
+id: tournaments
+label: Tournaments
 module: views
 description: ''
 tag: ''
@@ -70,8 +70,47 @@ display:
             next: ››
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            title: title
+            field_tournament_place_1: field_tournament_place_1
+            field_tournament_start: field_tournament_start
+          info:
+            title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_tournament_place_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_tournament_start:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
       row:
-        type: fields
+        type: 'entity:node'
+        options:
+          view_mode: teaser
       fields:
         title:
           id: title
@@ -79,6 +118,7 @@ display:
           field: title
           entity_type: node
           entity_field: title
+          label: ''
           alter:
             alter_text: false
             make_link: false
@@ -96,7 +136,6 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Title
           exclude: false
           element_type: ''
           element_class: ''
@@ -120,14 +159,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_place:
-          id: field_place
-          table: node__field_place
-          field: field_place
+        field_tournament_place_1:
+          id: field_tournament_place_1
+          table: node__field_tournament_place
+          field: field_tournament_place
           relationship: none
           group_type: group
           admin_label: ''
-          label: Place
+          label: 'Tournament Place'
           exclude: false
           alter:
             alter_text: false
@@ -160,7 +199,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -183,14 +222,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_start:
-          id: field_start
-          table: node__field_start
-          field: field_start
+        field_tournament_start:
+          id: field_tournament_start
+          table: node__field_tournament_start
+          field: field_tournament_start
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Start date'
+          label: 'Tournament Start'
           exclude: false
           alter:
             alter_text: false
@@ -266,56 +305,13 @@ display:
           table: node_field_data
           field: type
           value:
-            event: event
+            tournament: tournament
           entity_type: node
           entity_field: type
           plugin_id: bundle
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_state_value:
-          id: field_state_value
-          table: node__field_state
-          field: field_state_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            upcoming: upcoming
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_state_value_op
-            label: 'State (field_state)'
-            description: ''
-            use_operator: false
-            operator: field_state_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_state_value
-            required: true
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: list_field
       sorts:
         created:
           id: created
@@ -332,11 +328,20 @@ display:
           expose:
             label: ''
           granularity: second
-      title: Events
+      title: Tournaments
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        field_tournament_place:
+          id: field_tournament_place
+          table: node__field_tournament_place
+          field: field_tournament_place
+          relationship: none
+          group_type: group
+          admin_label: 'field_tournament_place: Content'
+          required: true
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
@@ -344,13 +349,12 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_place'
-        - 'config:field.storage.node.field_start'
+        - 'config:field.storage.node.field_tournament_place'
+        - 'config:field.storage.node.field_tournament_start'
   page_1:
     display_plugin: page
     id: page_1
@@ -358,20 +362,24 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: events
+      path: tournaments
       menu:
         type: normal
-        title: Events
+        title: Tournaments
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
         menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_place'
-        - 'config:field.storage.node.field_start'
+        - 'config:field.storage.node.field_tournament_place'
+        - 'config:field.storage.node.field_tournament_start'

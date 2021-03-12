@@ -155,6 +155,19 @@ class BaseController extends ControllerBase {
       return null;
   }
 
+  protected function getUuidListByContentType($contenType){
+    //TODO add static cache to improve performance
+
+    $query = \Drupal::database()->select('node', 'n');
+      $query->addField('n', 'uuid');
+      $query->condition('n.type', $contenType);
+      $results = $query->execute()->fetchAll();
+      if($results){
+        return $results;
+      }
+      return null;
+  }
+
   protected function createNode($bundle, $fields, $entity_type = 'node'){
 
       //get definition of target entity type

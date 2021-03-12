@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tournament_results.body
+    - field.field.node.tournament_results.field_tournament
+    - field.field.node.tournament_results.field_tournament_player
+    - field.field.node.tournament_results.field_tournament_rank
+    - node.type.tournament_results
+  module:
+    - text
+    - user
+id: node.tournament_results.teaser
+targetEntityType: node
+bundle: tournament_results
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_tournament: true
+  field_tournament_player: true
+  field_tournament_rank: true
+  langcode: true

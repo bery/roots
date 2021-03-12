@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.tournament_results
+id: node.tournament_results
+target_entity_type_id: node
+target_bundle: tournament_results
+default_langcode: site_default
+language_alterable: false

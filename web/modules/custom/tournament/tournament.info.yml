@@ -11,3 +11,4 @@ dependencies:
   - 'drupal:path'
   - 'drupal:text'
   - 'drupal:user'
+  - 'drupal:views'

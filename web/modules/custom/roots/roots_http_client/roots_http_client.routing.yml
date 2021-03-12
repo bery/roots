@@ -29,3 +29,11 @@ roots_http_client.rankings:
     _title: 'Rankings'
   requirements:
     _permission: 'access content'
+
+roots_http_client.tournaments:
+  path: '/roots_tournaments'
+  defaults:
+    _controller: '\Drupal\roots_http_client\Controller\TournamentsController::execute'
+    _title: 'Tournaments'
+  requirements:
+    _permission: 'access content'

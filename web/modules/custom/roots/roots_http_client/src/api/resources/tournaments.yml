@@ -13,15 +13,27 @@ operations:
 
   FindTournament:
     httpMethod: "GET"
-    uri: "tournaments/{postId}"
+    uri: "tournaments/{tournamentId}"
     summary: "Find a single post by id."
     parameters:
-      postId:
+      tournamentId:
         location: "uri"
         description: "Filter events by id"
         required: true
-        type: "integer"
-    responseModel: "Event"
+        type: "string"
+    responseModel: "Tournament"
+
+  FindTournamentResults:
+    httpMethod: "GET"
+    uri: "tournaments/{tournamentId}/results"
+    summary: "Find a single post by id."
+    parameters:
+      tournamentId:
+        location: "uri"
+        description: "Filter events by id"
+        required: true
+        type: "string"
+    responseModel: "TournamentResults"
 
 models:
   Tournament:
@@ -41,6 +53,19 @@ models:
         location: "json"
         type: "string"
 
+  TournamentResult:
+    type: "object"
+    location: "json"
+    properties:
+      rank:
+        location: "json"
+        type: "string"
+      players:
+        type: "array"
+        location: "json"
+        items:
+          "$ref": "Player"
+
   TournamentList:
     type: "object"
     location: "json"
@@ -49,4 +74,11 @@ models:
         type: "array"
         location: "json"
         items:
-          "$ref": "Event"
+          "$ref": "Tournament"
+
+  TournamentResults:
+    type: "array"
+    location: "json"
+    items:
+      "$ref": "TournamentResult"
+

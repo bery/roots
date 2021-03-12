@@ -1,0 +1,12 @@
+name: 'Tournament results'
+description: 'Provides Tournament results content type and related configuration. '
+type: module
+core_version_requirement: '^8.9 || ^9'
+dependencies:
+  - field
+  - language
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
